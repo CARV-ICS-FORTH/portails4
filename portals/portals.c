@@ -23,6 +23,7 @@
 #include <sys/types.h>
 
 #include "swptl4.h"
+#include "ptl_getenv.h"
 
 struct linked_list {
 	ptl_interface_t num_interface;
@@ -112,12 +113,19 @@ int PtlInit(void)
 	struct swptl_options opts;
 	struct bximsg_options msg_opts;
 	struct bxipkt_udp_options transport_opts;
+	char *env;
 
 	bximsg_options_set_default(&msg_opts);
 	bxipkt_options_set_default(&transport_opts.global);
 	swptl_options_set_default(&opts);
-	/* TODO: allow the user to choose the IP */
-	transport_opts.ip = "127.0.0";
+
+	env = ptl_getenv("NET_IP");
+
+	if (env) {
+		transport_opts.ip = env;
+	} else {
+		transport_opts.ip = "127.0.0";
+	}
 	transport_opts.default_mtu = false;
 	return swptl_func_libinit(&opts, &msg_opts, &transport_opts.global, &ctx_global);
 }

@@ -1,3 +1,5 @@
+portals4_headers = include_directories('include', '../swptl')
+
 portals_lib = library(
   'portals',
   'portals.c',
