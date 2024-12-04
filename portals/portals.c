@@ -123,6 +123,7 @@ int PtlInit(void)
 
 	if (env) {
 		transport_opts.ip = env;
+		env = NULL;
 	} else {
 		transport_opts.ip = "127.0.0";
 	}

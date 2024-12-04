@@ -14,8 +14,22 @@ $ meson setup build
 $ cd build
 $ ninja
 ```
+
+## Configuring the Interface IP
+
+You can set the interface IP address by exporting the `NET_IP` environment variable. 
+If `NET_IP` is not set, the default IP `127.0.0.x` will be used.
+
+To specify the interface IP, use the following command in your terminal:
+
+```bash
+export NET_IP=192.168.50.1
+```
+
 ## How to test
 A [examples](./examples) folder is present on the root of the project.
+
+Export NET_IP (e.g export NET_IP=192.168.50.1) enviroment variable to choose Interface IP default 127.0.0.x.  
 
 Some examples using Portals functions can be found. To execute them:
 ```
